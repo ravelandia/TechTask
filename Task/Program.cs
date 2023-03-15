@@ -41,9 +41,9 @@ namespace Task
 
             Console.WriteLine("The triangle is"+ (isEquilateral(longitude) ? "" : " NOT") + " Equilateral");
 
-            Console.WriteLine("The triangle is"+(isIsosceles(longitude)?"":" NOT")+ " Isosceles");
+            Console.WriteLine("The triangle is"+((isIsosceles(longitude) && !isEquilateral(longitude)) ?"":" NOT")+ " Isosceles");
 
-            Console.WriteLine("The triangle is" + (isRight(longitude) ? "" : " NOT ") + " right");
+            Console.WriteLine("The triangle is" + (isRight(longitude) ? "" : " NOT ") + " Right");
 
             Console.WriteLine("The length of each side is:");
             foreach (KeyValuePair<string, double> element in longitude)
@@ -63,7 +63,7 @@ namespace Task
         
         public static bool isEquilateral(Dictionary<string, double> longitude)
         {
-            return longitude["ab"] == longitude["bc"] && longitude["bc"] == longitude["ac"];
+            return Math.Round(longitude["ab"] - longitude["bc"], 2) ==0 && Math.Round(longitude["bc"] - longitude["ac"], 2)==0;
         }
 
         public static bool isIsosceles(Dictionary<string, double> longitude)
